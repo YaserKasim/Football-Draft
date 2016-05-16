@@ -1,13 +1,19 @@
 # Edouard Long 2015
 
 # a function that will display the formation with all of the given players ( takes in a formation and the players )
-def showSquad(formation,players,subs):
+def showSquad(formation,players,subs,manager):
 
     # first clear the screen
     print("\n" * 80)
 
+    
+
+    # first print out the manager
+    print("Manager:\n")
+    print(manager[0].capitalize() + "      " + manager[1].upper())
+
     # print a title in the middle of the screen
-    print("\n" * 5)
+    print("\n" * 3)
 
     # initialise a counter that keeps track of which player we are on
     counter = 0 
@@ -17,7 +23,7 @@ def showSquad(formation,players,subs):
 
         # print out 10 new lines ( dont if this is the fist row)
         if counter != 0:
-            print("\n" * 5)
+            print("\n" * 9)
 
         # initialse a new string that contains the whole of each row
         contentsOfRow = ""
@@ -54,7 +60,7 @@ def showSquad(formation,players,subs):
         print(contentsOfRow)
 
     # print out the subs
-    print("\n\n\n\n\n\n\nSubs:\n")
+    print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSubs:\n")
 
     # initialise the row that contians the subs
     contentsOfRowSubs = ""
@@ -92,6 +98,9 @@ def showSquad(formation,players,subs):
 # create a main func
 def main():
 
+    # create the manager
+    manager = ["Player 0","4"]
+
     # create an array of 11 players
     players = [["Player 1","striker","87"],["Player 2","striker","87"],["Player 3","mid","87"],["Player 4","mid","87"],["Player 5","mid","87"],["Player 6","mid","87"],["Player 7","mid","87"],["Player 8","mid","87"],["Player 9","def","87"],["Player 10","def","87"],["Player 11","gk","87"]]
 
@@ -99,10 +108,22 @@ def main():
     subs = [["Player 12","striker","87"],["Player 13","DEF","87"],["Player 14","GK","87"],["Player 15","LW","87"],["Player 16","RW","87"]]
 
     # create a formation we will use
-    formation = [3,3,4,1]
+    formation = [['gk'],['lb','cb','cb','rb'],['rm','cm','lm'],['st','st','st']]
+
+    # get that formation in numbers
+    formationInNumbers = []
+
+    # loop through the formation
+    for row in reversed(formation):
+
+        # get the len of that array
+        formationInNumbers.append(len(row))
 
     # print out the squad
-    showSquad(formation,players,subs)
+    showSquad(formationInNumbers,players,subs,manager)
+
+    # print some dashes
+    print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSubs:\n")
 
     print("\n\n")
     
@@ -112,6 +133,10 @@ def main():
     # check if the user has chosen a sub
     if userInput > 11:
         userRow = len(formation) + 1
+
+    # check if the user has chosen the manager
+    elif userInput == 0:
+        userRow = 0
 
     # else find the row of the player they chose
     else:
