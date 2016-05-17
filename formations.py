@@ -2,23 +2,44 @@ import time
 import random
 
 def pickFormation():
+    generateRandomFormations
     formation = []
-    formation.append() = [['gk'],['cb','cb','cb',],['cm','cm',],['lm','rm'],['cam']['st','st']]
-    formation.append() = [['gk'],['cb','cb','cb'],['lm','cm','cm','rm'],['lf','rf'],['st']]
-    formation.append() = [['gk'],['cb','cb','cb'],['lm','cm','cm','rm'],[['lf','st','rf']]
-    formation.append() = [['gk'],['cb','cb','cb'],['cdm','cdm'],['lm','cam','rm'],['st','st']
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cdm'],['lm','rm'],['cam'],['st','st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cdm'],['lm','cm','cm','rm'],['st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cdm','cdm'],['cam']['cam','cam'],['st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cdm','cdm',],['cam','cam'],['st','st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cdm'],['lm','cm','cm','rm'],['st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['cam'],['st','st']]
-    formation.append() = [['gk'],['lb','cb','cb','rb'],['cm','cm','cm',],['lf','rf'],['st']]
+    
+    
+
+    formation.append([['gk'],['cb','cb','cb',],['lw','cm','cm','rw',],['cam'],['st','st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['lw','rw'],['st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['lw','st','rw']])
+    formation.append([['gk'],['cb','cb','cb'],['cdm','cm'],['lm','cam','rm'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','rw'],['cam'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rw'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm'],['cam'],['cam','cam'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm',],['cam','cam'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rw'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['cam'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm',],['lw','rw'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm',],['lw','st','rw',]])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm',],['lw','cf','rw',],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['lw','cm','cm','rw',],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['lw','cm','rw',],['cam','cam'],['st']])
+    formation.append([['gk'],['lb','cb','cb','cb','rb',],['cm','cm',],['cam',],['st','st',]])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm',],['lw','rw'],['st']])
+    formation.append([['gk'],['lb','cb','cb','cb','rb'],['cm','cm',],['lw','st','rw',]])
+    formation.append([['gk'],['lb','cb','cb','cb','rb'],['cm','cm','cm',],['st','st',]])
+
+    strToPrint = []
+    
+    for row in formation[4][1:]:
+
+        strToPrint.append(len(row))
+    print(strToPrint)
+    
+                          
     
     
     
     
-    [3412, 3421, 343, 352, 41212, 4141, 4231, 4222, 4312, 4321, 433, 4411, 442, 451, 5212, 5221, 532]
+ 
     
     
     
