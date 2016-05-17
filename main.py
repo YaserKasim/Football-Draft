@@ -102,7 +102,7 @@ def main():
     manager = ["Player 0","4"]
 
     # create an array of 11 players
-    players = [["Player 1","striker","87"],["Player 2","striker","87"],["Player 3","mid","87"],["Player 4","mid","87"],["Player 5","mid","87"],["Player 6","mid","87"],["Player 7","mid","87"],["Player 8","mid","87"],["Player 9","def","87"],["Player 10","def","87"],["Player 11","gk","87"]]
+    players = [["Player 1","st","87"],["Player 2","st","87"],["Player 3","st","87"],["Player 4","mid","87"],["Player 5","mid","87"],["Player 6","mid","87"],["Player 7","lb","87"],["Player 8","cb","87"],["Player 9","cb","87"],["Player 10","rb","87"],["Player 11","gk","87"]]
 
     # create an array of 5 subs
     subs = [["Player 12","striker","87"],["Player 13","DEF","87"],["Player 14","GK","87"],["Player 15","LW","87"],["Player 16","RW","87"]]
@@ -123,16 +123,17 @@ def main():
     showSquad(formationInNumbers,players,subs,manager)
 
     # print some dashes
-    print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSubs:\n")
-
-    print("\n\n")
+    print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------")
     
     # get the user to choose a number
     userInput = int(input("Please choose a player to swap (type in their number)\n"))
+
+    # create a reversed formation of the array
+    reversedFormation = formation[::-1]
     
     # check if the user has chosen a sub
     if userInput > 11:
-        userRow = len(formation) + 1
+        userRow = len(reversedFormation) + 1
 
     # check if the user has chosen the manager
     elif userInput == 0:
@@ -147,10 +148,10 @@ def main():
         userRow = 0
 
         # determine which row the user's player is on
-        for row in range(0,len(formation)):
-
+        for row in range(0,len(reversedFormation) + 1):
+            
             # get the number of players in the next row
-            currentRow = currentRow + formation[row]
+            currentRow = currentRow + len(reversedFormation[row])
                     
             # check if the player is in this row
             if (currentRow - userInput) >= 0:
@@ -161,6 +162,19 @@ def main():
                 break
 
     print("The row you have chosen is " + str(userRow))
+
+    # find the position of that player
+    # first find out how many rows are before the player and add it to a var
+    totalOfRowsBefore = 0
+    for row in range(0,userRow - 1):
+
+        totalOfRowsBefore += len(reversedFormation[row])
+
+    print(totalOfRowsBefore)
+
+    # set the positon of the player equal to the totalofrowsbefore minus the user's input
+    playerPosition = userInput - totalOfRowsBefore       
+
 
 
 main()
