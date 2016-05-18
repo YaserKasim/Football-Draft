@@ -162,18 +162,33 @@ def main():
                 break
 
     print("The row you have chosen is " + str(userRow))
+    
+    # find the position of that player if it is not a sub
+    if userRow != 0 and userRow < len(reversedFormation) + 1:
+        
+        # first find out how many rows are before the player and add it to a var
+        totalOfRowsBefore = 0
+        for row in range(0,userRow - 1):
 
-    # find the position of that player
-    # first find out how many rows are before the player and add it to a var
-    totalOfRowsBefore = 0
-    for row in range(0,userRow - 1):
+            # get the total of the rows before
+            totalOfRowsBefore += len(reversedFormation[row])
 
-        totalOfRowsBefore += len(reversedFormation[row])
+        # set the positon of the player equal to the totalofrowsbefore minus the user's input
+        playerPosition = reversedFormation[userRow-1][userInput - totalOfRowsBefore - 1]
 
-    print(totalOfRowsBefore)
+    # check if a sub was chosen
+    elif userRow == len(reversedFormation) + 1:
 
-    # set the positon of the player equal to the totalofrowsbefore minus the user's input
-    playerPosition = userInput - totalOfRowsBefore       
+        # set the player position to 'sub'
+        playerPosition = 'sub'
+
+    # check if a manager was chosen
+    elif userRow == 0:
+
+        # set the player pos to 'manager'
+        playerPosition = 'manager'
+
+    print("The position of your player is: " + playerPosition.upper())
 
 
 
