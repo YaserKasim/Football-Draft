@@ -1063,14 +1063,96 @@ GK
 Schmeichel
 GK
 75
+*
+Ferguson
+MN
+5
+*
+Mourinho
+MN
+5
+*
+Guardiola
+MN
+5
+*
+Pardew
+MN
+2
+*
+McClaren
+MN
+2
+*
+Conte
+MN
+4
+*
+Pellegrini
+MN
+3
+*
+Benitez
+MN
+4
+*
+Allardyce
+MN
+3
+*
+Williams
+MN
+2
+*
+Simeone
+MN
+4
+*
+Klopp
+MN
+4
+*
+Enrique
+MN
+4
+*
+Ancelotti
+MN
+4
+*
+Redknapp
+MN
+2
+*
+Ranieri
+MN
+4
+*
+Low
+MN
+4
+*
+Bilic
+MN
+3
+*
+Van Gaal
+MN
+3
+*
+Hughes
+MN
+3
+*
+Villas Boas
+MN
+3
+*
+Martinez
+MN
+2
+*
+Moyes
+MN
+1
 ***
-
-GK
-LB (LB/LWB)
-CB
-RB (RB/RWB)
-CM (CM/CDM)
-CAM (CAM)
-LW (LM,LW,LF)
-RW (RM,RW,RF)
-ST (ST/CF)
