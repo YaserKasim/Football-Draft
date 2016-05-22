@@ -1,3 +1,4 @@
+*
 Suarez
 ST
 90
@@ -50,7 +51,7 @@ Defoe
 ST
 77
 *
-Eto’o
+Eto
 ST
 78
 *
@@ -182,7 +183,7 @@ Navas
 RW
 80
 *
-Błaszczykowski
+Blaszczykowski
 RW
 80
 *
@@ -203,7 +204,6 @@ RW
 74
 *
 Ritchie
- 
 RW
 72
 *
@@ -523,7 +523,7 @@ Melo
 CM
 79
 *
-N'Zonzi
+N Zonzi
 CM
 79
 *
@@ -755,7 +755,6 @@ Rojo
 CB
 81
 *
- 
 Sakho
 CB
 80
@@ -1156,3 +1155,13 @@ Moyes
 MN
 1
 ***
+
+GK
+LB (LB/LWB)
+CB
+RB (RB/RWB)
+CM (CM/CDM)
+CAM (CAM)
+LW (LM,LW,LF)
+RW (RM,RW,RF)
+ST (ST/CF)
