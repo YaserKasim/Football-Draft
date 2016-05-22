@@ -91,26 +91,44 @@ def showSquad(formation,players,subs,manager):
 # create a main func
 def main(formationToUse):
 
-    # create the manager
-    manager = ["Player 0","2"]
+    global players
+    global firstTime
+    global playersToChooseFrom
+    global manager
+    global subs
+    global formation
+    global formationInNumbers
+    global arrayToChooseFrom
 
-    # create an array of 11 players
-    players = [["Player 1","pos","50"],["Player 2","pos","50"],["Player 3","pos","50"],["Player 4","pos","50"],["Player 5","pos","50"],["Player 6","pos","50"],["Player 7","pos","50"],["Player 8","pos","50"],["Player 9","pos","50"],["Player 10","pos","50"],["Player 11","pos","50"]]
+    # only do this setup the first time
+    if firstTime == True:
 
-    # create an array of 5 subs
-    subs = [["Player 12","pos","50"],["Player 13","pos","50"],["Player 14","pos","50"],["Player 15","pos","50"],["Player 16","pos","50"]]
+        # set first time to false
+        firstTime = False
 
-    # create a formation we will use
-    formation = formationToUse
+        # create a new instance of players
+        arrayToChooseFrom = players
 
-    # get that formation in numbers
-    formationInNumbers = []
+        # create the manager
+        manager = ["Player 0","2"]
 
-    # loop through the formation
-    for row in reversed(formation):
+        # create an array of 11 players
+        players = [["Player 1","pos","50"],["Player 2","pos","50"],["Player 3","pos","50"],["Player 4","pos","50"],["Player 5","pos","50"],["Player 6","pos","50"],["Player 7","pos","50"],["Player 8","pos","50"],["Player 9","pos","50"],["Player 10","pos","50"],["Player 11","pos","50"]]
 
-        # get the len of that array
-        formationInNumbers.append(len(row))
+        # create an array of 5 subs
+        subs = [["Player 12","pos","50"],["Player 13","pos","50"],["Player 14","pos","50"],["Player 15","pos","50"],["Player 16","pos","50"]]
+
+        # create a formation we will use
+        formation = formationToUse
+
+        # get that formation in numbers
+        formationInNumbers = []
+
+        # loop through the formation
+        for row in reversed(formation):
+
+            # get the len of that array
+            formationInNumbers.append(len(row))
 
     # print out the squad
     showSquad(formationInNumbers,players,subs,manager)
@@ -189,8 +207,6 @@ def main(formationToUse):
                     userRow = row + 1
                     
                     break
-
-        print("The row you have chosen is " + str(userRow))
         
         # find the position of that player if it is not a sub
         if userRow != 0 and userRow < len(reversedFormation) + 1:
@@ -215,25 +231,136 @@ def main(formationToUse):
         elif userRow == 0:
 
             # set the player pos to 'manager'
-            playerPosition = 'manager'
+            playerPosition = 'mn'
 
-        print("The position of your player is: " + playerPosition.upper())
+        # next, find five random players in that position
+        options = [arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)]]
 
+        # intialise a counter
+        counter = 1
+        
+        # display the options to the user
+        for player in options:
+
+            # print out the player
+            print(str(counter),":",player[0]," ",player[1])
+
+            # increment the counter
+            counter += 1
+
+        # get the player to choose an option
+        userChoice = int(input("Please type in the number of the player you would like!\n"))
+
+        # get the player
+        playerToSwap = options[userChoice - 1]
+
+        # place it into the array!
+        players[userInput - 1] = playerToSwap
+        
+        # print out the new and improved squadron
+        main(formationToUse)
+        
+# a func that will find a random player in a given array and remove it so that the user can't get it again
+def pickRandomPlayer(positionOfPlayer):
+    
+    global arrayToChooseFrom
+    
+    # initalise a loop that will run until the player is found of that position
+    found = False
+    
+    while not found:
+
+        # generate a random number
+        randomNumber = random.randint(0,len(arrayToChooseFrom) - 1)
+        
+        # check what postion the player we generated was
+        position = arrayToChooseFrom[randomNumber][1]
+
+        # if it is the position we want return it else try again
+        if position == positionOfPlayer.upper():
+
+            # save this position
+            playerPositionInArray = randomNumber
+
+            # remove it from the array so that the same player cannot be chosen again
+            arrayToChooseFrom.pop(randomNumber)
+
+            return playerPositionInArray
+    
+        else:
+            
+            pass
+
+ 
+# the main function that will read the text file
+def readTextFile():
+
+    global players
+
+    # intialise an array the players will go into
+    players = []
+
+    # initiase a counter
+    counter = -1
+
+    # open the file
+    file = open("playerDatabase.txt","r")
+
+    # initialise a var that keeps track of whether we have read the whole file
+    done = False
+
+    # initilasie a loop that goes until we read the file
+    while not done:
+    
+        # first read the next line
+        line = file.readline().rstrip("\n")
+        
+        # check if there is a * and we need to create a new array
+        if line == "*":
+
+            # create a new array in the players
+            players.append([])
+
+            # incriment the counter
+            counter += 1
+
+        # check if the file has ended
+        elif line == "***":
+
+            # close the file
+            file.close()
+
+            # break the loop
+            done = True
+
+        # else put the info into the array
+        else:
+
+            # add the info in
+            players[counter].append(line)
 
 def pickFormation():
+
+    global firstTime
+
+    firstTime = True
+    
+    # first read the text file
+    readTextFile()
+    
     formation = []
     random1 = random.randint(0,len(formation))
-    formation.append([['gk'],['cb','cb','cb'],['lm','cm','cm','rm'],['cam'],['st','st']])
-    formation.append([['gk'],['cb','cb','cb'],['lm','cm','cm','rm'],['lf','rf'],['st']])
-    formation.append([['gk'],['cb','cb','cb'],['lm','cm','cm','rm'],['lf','st','rf']])
-    formation.append([['gk'],['cb','cb','cb'],['lm','cdm','cdm','cam','rm'],['st','st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cdm'],['lm','rm'],['cam'],['st','st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cdm'],['lm','cm','cm','rm'],['st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cdm','cdm'],['cam'],['cam','cam'],['st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cdm','cdm',],['cam','cam'],['st','st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cdm'],['lm','cm','cm','rm'],['st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['cam'],['st','st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['st','st'],['st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['st','st','st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','cam','rm'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','rw'],['cam'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rw'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm'],['cam'],['cam','cam'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm',],['cam','cam'],['st','st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rm'],['st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['cam'],['st','st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['lf','rf'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['st','st'],['st']])
 
     numberOfFormations = 5
     listOfRandomItems = random.sample(formation,numberOfFormations)
@@ -262,6 +389,7 @@ def pickFormation():
         main(listOfRandomItems[3])
     if userChoice == 'E':
         main(listOfRandomItems[4])
+
 
 pickFormation()
 
