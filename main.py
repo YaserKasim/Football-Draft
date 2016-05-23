@@ -138,7 +138,7 @@ def main(formationToUse):
 
     
     # first, determine if the user wants to swap a sub with a player or get new players for a position
-    userChoice = input("If you want to get new players for a position type 'players' or if you want to swap a sub with a player type 'swap'\n")
+    userChoice = input("If you want to get new players for a position type 'new' or if you want to swap a sub with a player type 'swap'\n")
 
     # see which one the user typed in
     if userChoice == 'swap':
@@ -256,6 +256,12 @@ def main(formationToUse):
 
         # place it into the array!
         players[userInput - 1] = playerToSwap
+
+        # get which position this player is in the arraytochoosefrom
+        playerToDelete = arrayToChooseFrom.index(playerToSwap)
+
+        # delete this player so that we can't get it again
+        arrayToChooseFrom.pop(playerToDelete)
         
         # print out the new and improved squadron
         main(formationToUse)
@@ -281,9 +287,6 @@ def pickRandomPlayer(positionOfPlayer):
 
             # save this position
             playerPositionInArray = randomNumber
-
-            # remove it from the array so that the same player cannot be chosen again
-            arrayToChooseFrom.pop(randomNumber)
 
             return playerPositionInArray
     
