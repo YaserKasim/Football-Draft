@@ -1,0 +1,49 @@
+sManager:
+Player 0
+
+
+
+
+                                                                    Player 1    POS    
+
+
+
+
+
+
+                              Player 2    POS          Player 3    POS          Player 4    POS          Player 5    POS    
+
+
+
+
+
+
+                                                                    Player 6    POS    
+
+
+
+
+
+
+                              Player 7    POS          Player 8    POS          Player 9    POS          Player 10    POS    
+
+
+
+
+
+
+                                                                    Player 11    POS    
+
+
+
+
+
+
+Subs:
+
+
+
+Player 12    POS        Player 13    POS        Player 14    POS        Player 15    POS        Player 16    POS    
+
+
+Rating: 52.0

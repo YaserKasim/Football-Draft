@@ -11,6 +11,12 @@ def showSquad(formation,players,subs,manager):
     print("Manager:\n")
     print(manager[0].capitalize())
 
+    # open the file
+    file = open("yourSquad.txt","w")
+
+    # write the manager to file file
+    file.write("Manager:\n" + manager[0].capitalize() + "\n\n\n\n\n")
+
     # print a title in the middle of the screen
     print("\n" * 3)
 
@@ -57,8 +63,14 @@ def showSquad(formation,players,subs,manager):
         # print out the row
         print(contentsOfRow)
 
+        # write the row to the text file
+        file.write(contentsOfRow + "\n\n\n\n\n\n\n")
+
     # print out the subs
     print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSubs:\n")
+
+    # write subs to the text file
+    file.write("Subs:\n\n\n\n")
 
     # initialise the row that contians the subs
     contentsOfRowSubs = ""
@@ -87,6 +99,31 @@ def showSquad(formation,players,subs,manager):
 
     # print the subs
     print(contentsOfRowSubs)
+
+    # write the subs to the text file
+    file.write(contentsOfRowSubs + "\n\n\n")
+
+    # calculate the average of the user
+    # initalise the rating
+    rating = 0
+
+    # loop through each player
+    for player in players:
+
+        # add their total to the rating
+        rating += int(player[2])
+
+    # divide this rating by 11
+    rating = rating / 11
+
+    # add the manager to it
+    rating += int(manager[1])
+
+    # write the rating to the text file
+    file.write("Rating: " + str(rating))
+
+    # close the file
+    file.close()
 
         
     
@@ -140,7 +177,7 @@ def main(formationToUse):
 
     
     # first, determine if the user wants to swap a sub with a player or get new players for a position
-    userChoice = input("If you want to get new players for a position type 'new' or if you want to swap a sub with a player type 'swap'\n")
+    userChoice = input("If you want to get new players for a position type 'new' or if you want to swap a sub with a player type 'swap' or if you are finished type 'done'\n")
 
     # see which one the user typed in
     if userChoice == 'swap':
@@ -171,7 +208,38 @@ def main(formationToUse):
 
         # print out the new and improved squadron
         main(formationToUse)
-        
+
+    # check if the user is done
+    if userChoice == 'done':
+
+        # tell the user their game was saved to the text file
+        print("Your squad has been saved to a text file!")
+
+        # calculate the average of the user
+        # initalise the rating
+        rating = 0
+
+        # loop through each player
+        for player in players:
+
+            # add their total to the rating
+            rating += int(player[2])
+
+        # divide this rating by 11
+        rating = rating / 11
+
+        # add the manager to it
+        rating += int(manager[1])
+
+        # tell what the user what their rating was
+        print("The rating for your squad is "  + str(rating) + "!\n")
+
+        # thank the user and quit
+        print("Thank you for using FUTDraft, press any key to quit")
+
+        input()
+
+        quit()
 
     else:
     
