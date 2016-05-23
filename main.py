@@ -80,7 +80,7 @@ def showSquad(formation,players,subs,manager):
         print(contentsOfRow)
 
         # write the row to the text file
-        file.write(contentsOfRow + "\n\n\n\n\n\n\n")
+        file.write(contentsOfRow + "\n\n\n\n\n\n")
 
     # print out the subs
     print("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nSubs:\n")
@@ -522,7 +522,7 @@ def pickFormation():
     random1 = random.randint(0,len(formation))
     formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['cam'],['st','st']])
     formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['st','st'],['st']])
-    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['st','st','st']])
+    formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','rw'],['rw','st','lw']])
     formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','cam','rm'],['st','st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','rw'],['cam'],['st','st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rw'],['st']])

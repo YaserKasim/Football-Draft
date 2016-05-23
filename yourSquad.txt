@@ -1,25 +1,22 @@
-sManager:
+Manager:
 Player 0
 
 
 
 
-                                                                    Player 1    POS    
+                                                        Player 1    POS          Player 2    POS    
 
 
 
 
 
-
-                              Player 2    POS          Player 3    POS          Player 4    POS          Player 5    POS    
-
+                                                                    Player 3    POS    
 
 
 
 
 
-                                                                    Player 6    POS    
-
+                                           Player 4    POS          Player 5    POS          Player 6    POS    
 
 
 
@@ -31,9 +28,7 @@ Player 0
 
 
 
-
                                                                     Player 11    POS    
-
 
 
 
