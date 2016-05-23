@@ -1,4 +1,4 @@
-This is the footbal draft repository 
+This is the repository for the FUTDraft simulator in python. 
 
 Members:
 
