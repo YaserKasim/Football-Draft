@@ -36,6 +36,8 @@ def showSquad(formation,players,subs,manager):
             contentsOfRow += "                                     "
         elif row == 4:
             contentsOfRow += "                        "
+        elif row == 5:
+            contentsOfRow += "            "
 
         # initialise a loop that goes through the len of each row
         for player in range(0, row):
@@ -167,7 +169,8 @@ def main(formationToUse):
         # put the player where the sub was
         subs.insert(subToSwap,playerInfo)
 
-        showSquad(formationInNumbers,players,subs,manager)
+        # print out the new and improved squadron
+        main(formationToUse)
         
 
     else:
@@ -251,48 +254,118 @@ def main(formationToUse):
         # get the player to choose an option
         userChoice = int(input("Please type in the number of the player you would like!\n"))
 
-        # get the player
-        playerToSwap = options[userChoice - 1]
+        # check if the user has chosen a squad player
+        if playerPosition != 'sub' and playerPosition != 'mn':
 
-        # place it into the array!
-        players[userInput - 1] = playerToSwap
+            # get the player
+            playerToSwap = options[userChoice - 1]
 
-        # get which position this player is in the arraytochoosefrom
-        playerToDelete = arrayToChooseFrom.index(playerToSwap)
+            # place it into the array!
+            players[userInput - 1] = playerToSwap
 
-        # delete this player so that we can't get it again
-        arrayToChooseFrom.pop(playerToDelete)
-        
-        # print out the new and improved squadron
-        main(formationToUse)
+            # get which position this player is in the arraytochoosefrom
+            playerToDelete = arrayToChooseFrom.index(playerToSwap)
+
+            # delete this player so that we can't get it again
+            arrayToChooseFrom.pop(playerToDelete)
+            
+            # print out the new and improved squadron
+            main(formationToUse)
+
+        # check if the user chose a sub
+        elif playerPosition == 'sub':
+
+            # get the player
+            playerToSwap = options[userChoice - 1]
+
+            # place it into the array
+            subs[userInput - 12] = playerToSwap
+
+            # get which position this player is in the arraytochoosefrom
+            playerToDelete = arrayToChooseFrom.index(playerToSwap)
+
+            # delete this player so that we can't get it again
+            arrayToChooseFrom.pop(playerToDelete)
+            
+            # print out the new and improved squadron
+            main(formationToUse)
+
+        # check if the user chose a manager
+        elif playerPosition == 'mn':
+
+            # get the player
+            playerToSwap = options[userChoice - 1]
+
+            # place it into the array
+            manager = playerToSwap
+
+            # get which position this player is in the arraytochoosefrom
+            playerToDelete = arrayToChooseFrom.index(playerToSwap)
+
+            # delete this player so that we can't get it again
+            arrayToChooseFrom.pop(playerToDelete)
+            
+            # print out the new and improved squadron
+            main(formationToUse)
+            
+
+            
         
 # a func that will find a random player in a given array and remove it so that the user can't get it again
 def pickRandomPlayer(positionOfPlayer):
     
     global arrayToChooseFrom
-    
-    # initalise a loop that will run until the player is found of that position
-    found = False
-    
-    while not found:
 
-        # generate a random number
-        randomNumber = random.randint(0,len(arrayToChooseFrom) - 1)
+    # check if the position is a sub
+    if positionOfPlayer == 'sub':
+
+        # initalise a loop that will run until the player is found of that position
+        found = False
         
-        # check what postion the player we generated was
-        position = arrayToChooseFrom[randomNumber][1]
+        while not found:
 
-        # if it is the position we want return it else try again
-        if position == positionOfPlayer.upper():
-
-            # save this position
-            playerPositionInArray = randomNumber
-
-            return playerPositionInArray
-    
-        else:
+            # generate a random number
+            randomNumber = random.randint(0,len(arrayToChooseFrom) - 1)
             
-            pass
+            # check what postion the player we generated was
+            position = arrayToChooseFrom[randomNumber][1]
+
+            # if it is the position we want return it else try again
+            if position != 'MN':
+
+                # save this position
+                playerPositionInArray = randomNumber
+
+                return playerPositionInArray
+        
+            else:
+                
+                pass
+
+    else:
+    
+        # initalise a loop that will run until the player is found of that position
+        found = False
+        
+        while not found:
+
+            # generate a random number
+            randomNumber = random.randint(0,len(arrayToChooseFrom) - 1)
+            
+            # check what postion the player we generated was
+            position = arrayToChooseFrom[randomNumber][1]
+
+            # if it is the position we want return it else try again
+            if position == positionOfPlayer.upper():
+
+                # save this position
+                playerPositionInArray = randomNumber
+
+                return playerPositionInArray
+        
+            else:
+                
+                pass
 
  
 # the main function that will read the text file
@@ -394,11 +467,4 @@ def pickFormation():
         main(listOfRandomItems[4])
 
 
-pickFormation()
-
-        
-
-    
-
-    
-    
+pickFormation()    
