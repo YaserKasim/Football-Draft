@@ -48,7 +48,7 @@ Defoe
 ST
 77
 *
-Eto’o
+Eto o
 ST
 78
 *
@@ -216,7 +216,7 @@ Navas
 RW
 80
 *
-Błaszczykowski
+Blaszczykowski
 RW
 80
 *
@@ -628,7 +628,7 @@ Melo
 CM
 79
 *
-N'Zonzi
+N Zonzi
 CM
 79
 *
