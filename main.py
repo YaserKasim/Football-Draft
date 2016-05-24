@@ -9,13 +9,22 @@ def showSquad(formation,players,subs,manager):
 
     # first print out the manager
     print("Manager:\n")
-    print(manager[0].capitalize())
+
+    # check if the manager has been chosen
+    if manager[0] == "Player 0":
+        print(manager[0].capitalize())
+    else:
+        print(manager[0].capitalize() + " " + manager[2])
 
     # open the file
     file = open("yourSquad.txt","w")
 
     # write the manager to file file
-    file.write("Manager:\n" + manager[0].capitalize() + "\n\n\n\n\n")
+    if manager[0] == "Player 0":
+        file.write("Manager:\n" + manager[0].capitalize() + "\n\n\n\n\n")
+    else:
+        file.write("Manager:\n" + manager[0].capitalize() + " " + manager[2] + "\n\n\n\n\n")
+    
 
     # print a title in the middle of the screen
     print("\n" * 3)
@@ -57,6 +66,13 @@ def showSquad(formation,players,subs,manager):
             # add the players position to the string
             contentsOfRow += players[counter][1].upper()+ "    "
 
+            #if the user has chosen the player add the rating
+            if players[counter][2] != "50":
+
+                # add the player's rating to the string
+                contentsOfRow += players[counter][2]+ "    "
+
+
             #move onto the next player
             counter += 1
 
@@ -94,6 +110,12 @@ def showSquad(formation,players,subs,manager):
         # add the subs position to the string
         contentsOfRowSubs += subs[counter][1].upper()+ "    "
 
+        #if the user has chosen the player add the rating
+        if subs[counter][2] != "50":
+
+            # add the player's rating to the string
+            contentsOfRow += subs[counter][2]+ "    "
+
         #move onto the next player
         counter += 1
 
@@ -114,10 +136,10 @@ def showSquad(formation,players,subs,manager):
         rating += int(player[2])
 
     # divide this rating by 11
-    rating = rating / 11
+    rating = rating // 11
 
     # add the manager to it
-    rating += int(manager[1])
+    rating += int(manager[2])
 
     # write the rating to the text file
     file.write("Rating: " + str(rating))
@@ -138,6 +160,10 @@ def main(formationToUse):
     global formation
     global formationInNumbers
     global arrayToChooseFrom
+    global options
+
+    # initalise options
+    options = [1000,1000,1000,1000,1000]
 
     # only do this setup the first time
     if firstTime == True:
@@ -149,7 +175,7 @@ def main(formationToUse):
         arrayToChooseFrom = players
 
         # create the manager
-        manager = ["Player 0","2"]
+        manager = ["Player 0","MN","2"]
 
         # create an array of 11 players
         players = [["Player 1","pos","50"],["Player 2","pos","50"],["Player 3","pos","50"],["Player 4","pos","50"],["Player 5","pos","50"],["Player 6","pos","50"],["Player 7","pos","50"],["Player 8","pos","50"],["Player 9","pos","50"],["Player 10","pos","50"],["Player 11","pos","50"]]
@@ -226,10 +252,10 @@ def main(formationToUse):
             rating += int(player[2])
 
         # divide this rating by 11
-        rating = rating / 11
+        rating = rating // 11
 
         # add the manager to it
-        rating += int(manager[1])
+        rating += int(manager[2])
 
         # tell what the user what their rating was
         print("The rating for your squad is "  + str(rating) + "!\n")
@@ -305,7 +331,7 @@ def main(formationToUse):
             playerPosition = 'mn'
 
         # next, find five random players in that position
-        options = [arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)],arrayToChooseFrom[pickRandomPlayer(playerPosition)]]
+        options = [arrayToChooseFrom[pickRandomPlayer(playerPosition,0)],arrayToChooseFrom[pickRandomPlayer(playerPosition,1)],arrayToChooseFrom[pickRandomPlayer(playerPosition,2)],arrayToChooseFrom[pickRandomPlayer(playerPosition,3)],arrayToChooseFrom[pickRandomPlayer(playerPosition,4)]]
 
         # intialise a counter
         counter = 1
@@ -380,7 +406,7 @@ def main(formationToUse):
             
         
 # a func that will find a random player in a given array and remove it so that the user can't get it again
-def pickRandomPlayer(positionOfPlayer):
+def pickRandomPlayer(positionOfPlayer,whichPlayer):
     
     global arrayToChooseFrom
 
@@ -399,7 +425,7 @@ def pickRandomPlayer(positionOfPlayer):
             position = arrayToChooseFrom[randomNumber][1]
 
             # if it is the position we want return it else try again
-            if position != 'MN':
+            if position != 'MN' and randomNumber != options[1] and randomNumber != options[2] and randomNumber != options[3] and randomNumber != options[4]:
 
                 # save this position
                 playerPositionInArray = randomNumber
@@ -424,11 +450,11 @@ def pickRandomPlayer(positionOfPlayer):
             position = arrayToChooseFrom[randomNumber][1]
 
             # if it is the position we want return it else try again
-            if position == positionOfPlayer.upper():
+            if position == positionOfPlayer.upper() and randomNumber != options[1] and randomNumber != options[2] and randomNumber != options[3] and randomNumber != options[4]:
 
                 # save this position
                 playerPositionInArray = randomNumber
-
+                
                 return playerPositionInArray
         
             else:
@@ -500,7 +526,7 @@ def pickFormation():
     formation.append([['gk'],['cb','cb','cb'],['lw','cm','cm','cam','rm'],['st','st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','rw'],['cam'],['st','st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rw'],['st']])
-    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm'],['cam'],['cam','cam'],['st']])
+    formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm'],['cam','cam','cam'],['st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm',],['cam','cam'],['st','st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm'],['lw','cm','cm','rm'],['st']])
     formation.append([['gk'],['lb','cb','cb','rb'],['cm','cm','cm'],['cam'],['st','st']])
